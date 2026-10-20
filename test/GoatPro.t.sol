@@ -5,6 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {IERC20Errors} from "@openzeppelin/contracts/interfaces/draft-IERC6093.sol";
 import {GoatPro} from "../src/GoatPro.sol";
 
+/// forge-config: default.fuzz.runs = 1000
 contract GoatProTest is Test {
     uint256 internal constant SUPPLY = 1_000_000_000 ether;
 
@@ -382,7 +383,7 @@ contract GoatProTest is Test {
     }
 
     function testFuzz_TransferToAnyNonzeroRecipient(address recipient, uint256 amount) public {
-        vm.assume(recipient != address(0));
+        recipient = address(uint160(bound(uint256(uint160(recipient)), 1, type(uint160).max)));
         amount = bound(amount, 0, SUPPLY);
         assertTrue(token.transfer(recipient, amount));
         if (recipient == address(this)) {
