@@ -1,0 +1,24 @@
+{
+  "kind": "custom_token",
+  "token": {
+    "contract": "GoatPro",
+    "name": "Goat Pro",
+    "symbol": "GPRO",
+    "decimals": 18,
+    "constructorArgs": [],
+    "totalSupply": "1000000000000000000000000000"
+  },
+  "contracts": [],
+  "pool": {
+    "pairedCurrency": "0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127",
+    "fee": 12500,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "economics": {
+    "poolBps": 5000,
+    "initialMarketCapWei": "2500000000000000000000",
+    "remainderTo": "0xbb85c1b7540d9e7b56f7a595fc1ff7dd07cb0823"
+  },
+  "notes": "GoatPro (src/GoatPro.sol) is a fixed-supply ERC-20 built on the unmodified OpenZeppelin Contracts v5.0.2 ERC20 implementation: name Goat Pro, symbol GPRO, 18 decimals. Its constructor takes no arguments and mints the whole supply of 1,000,000,000 GPRO (1000000000000000000000000000 minor units) once to msg.sender, which is the factory when deployed through ProjectFactory.launchCustom. There is no owner, minter, pauser, blacklist, fee, burn, tax, rebase, proxy, upgrade path or initialization call, and no public mint or burn function, so the supply cannot grow after launch and no privileged call can move or freeze a holder's balance. Ordinary transfers, approvals and transferFrom follow standard ERC-20 semantics with no exemptions needed, so the factory's transfer to the distributor, the single-sided pool seed through the Uniswap v4 PoolManager, claims from the distributor and trader swaps all move exactly the amounts they state. The launch deploys no application contracts. The pool pairs GPRO with IMD at 0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127 on Robinhood Chain; pool.initialPrice is provenance only, and the deployer derives the opening price from economics.initialMarketCapWei and totalSupply."
+}
